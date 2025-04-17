@@ -1,31 +1,34 @@
-# FPGA-Based Pi Calculator using Machin's Formula
+# FPGA-Based Pi Calculator Using Machin's Formula
 
-This project implements a Pi (π) calculator on an FPGA using **SystemVerilog**, based on **Machin's formula** and supporting **multiple-precision arithmetic**.
+This project implements a π (Pi) calculator on an FPGA using **SystemVerilog**, based on **Machin's formula** and **multiple-precision arithmetic**.
 
 ## 📐 Overview
 
-- Pi is calculated using **Machin's formula**:
-  
+- Calculates π using **Machin’s formula**:
+
   \[
-  \frac{\pi}{4} = 4 \cdot \arctan\left(\frac{1}{5}\right) - \arctan\left(\frac{1}{239}\right)
+  \pi = 16 \cdot \arctan\left(\frac{1}{5}\right) - 4 \cdot \arctan\left(\frac{1}{239}\right)
   \]
 
-- The implementation is written entirely in **SystemVerilog**.
-- The calculator is capable of computing **up to 50 digits of Pi**.
+- Written entirely in **SystemVerilog**.
+- Capable of computing **up to 50 decimal digits** of π.
 
 ## 🧮 Multiple-Precision Arithmetic
 
-To support 50 digits, the system uses multiple-precision arithmetic with the following format:
+- Uses **16-bit units**, each representing a number from **0 to 9999**.
+- A single number is made up of **16 such units**, i.e., **64 decimal digits** total.
+- Basic operations (addition, subtraction, multiplication, division) are implemented for these units.
 
-- Each **16-bit block** represents a number in the range **0 to 9999**.
-- A single number is represented using **16 such blocks**, i.e., 16 × 4 decimal digits = **64 decimal digits** max.
-- Internal operations (addition, subtraction, multiplication, division) are performed on these 16-bit units.
+## 🧪 How It Works
 
-## 🔧 Features
+- Each mathematical module (`add_long.sv`, `sub_long.sv`, etc.) handles multi-digit math operations.
+- `machin.sv` computes arctangent terms using a series expansion.
+- `machintop.sv` assembles everything to compute π based on Machin’s formula.
+- `test_fpga_top.sv` and `test_machin.sv` are testbenches for simulation.
 
-- Written in pure SystemVerilog for FPGA implementation
-- Accurate Pi calculation up to 50 decimal places
-- Modularized design for multiple-precision math operations
+## 🛠 Usage
 
-## 🗂️ Directory Structure
-
+To simulate or synthesize:
+- Use tools like **ModelSim**, **Vivado**, or **Quartus**.
+- Set `machintop.sv` as the top-level design.
+- Run simulations using the provided testbenches.
