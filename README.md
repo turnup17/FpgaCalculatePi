@@ -4,12 +4,7 @@ This project implements a π (Pi) calculator on an FPGA using **SystemVerilog**,
 
 ## 📐 Overview
 
-- Calculates π using **Machin’s formula**:
-
-  \[
-  \pi = 16 \cdot \arctan\left(\frac{1}{5}\right) - 4 \cdot \arctan\left(\frac{1}{239}\right)
-  \]
-
+- Calculates π using **Machin’s formula**
 - Written entirely in **SystemVerilog**.
 - Capable of computing **up to 50 decimal digits** of π.
 
